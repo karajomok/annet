@@ -111,7 +111,7 @@
     "Nokia.NS7750": " 7750",
     "Nokia.SR_1s": "SR-1s",
 
-    "PC": "^(PC|pc|[Mm]ellanox SN|[Ee]dge-?[Cc]ore|[Mm]oxa|NVIDIA|Nebius|[Aa]sterfusion CX|[Uu]fi[Ss]pace|NADDOD|FSCOM|(VERTIV )?[Aa]vocent)",
+    "PC": "^(PC|pc|[Mm]ellanox SN|[Ee]dge-?[Cc]ore|[Mm]oxa|NVIDIA|Nebius|[Aa]sterfusion CX|[Uu]fi[Ss]pace|VERTIV)",
 
     "PC.Whitebox": "([Mm]ellanox SN|[Ee]dge-?[Cc]ore|NVIDIA|[Aa]sterfusion CX|[Uu]fi[Ss]pace|NADDOD|FSCOM)",
     "PC.Whitebox.Mellanox": "[Mm]ellanox",
@@ -153,9 +153,10 @@
     "PC.Whitebox.FSCOM.N.N9600": " N96\\d\\d",
     "PC.Whitebox.FSCOM.N.N9600.N9600_64OD": " N9600-64OD",
     "PC.Nebius": "^Nebius",
-    "PC.Nebius.Octoport": " NB-D-M-CSM-R",
-    "PC.Avocent": " [Aa]vocent",
-    "PC.Avocent.ACS8000": " (ACS|acs)8000",
+    "PC.Nebius.NB-E-BR-DCU-AST2600": "^Nebius NB-E-BR-DCU-AST2600",
+    "PC.Vertiv": "^VERTIV",
+    "PC.Vertiv.Avocent": "^VERTIV Avocent",
+    "PC.Vertiv.Avocent.ACS8000": "^VERTIV Avocent ACS8000",
 
     "RouterOS": "^([Rr]outer[Oo][Ss]|[Mm]ikro[Tt]ik)",
 
