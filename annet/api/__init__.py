@@ -338,8 +338,7 @@ def diff(
             fetcher.fetch(
                 [device for device in loader.devices if device.id in device_ids],
                 processes=args.parallel
-            ),
-            new_thread=True
+            )
         )
     stdin = args.stdin(filter_acl=args.filter_acl, config=None)
 
