@@ -428,6 +428,10 @@ def _used_families_policies(opts: Union[GlobalOptions, VrfOptions]) -> Iterable[
         for aggregate in family_opts.aggregates:
             if aggregate.policy:
                 yield aggregate.policy
+        if family_opts.export_policy:
+            yield family_opts.export_policy
+        if family_opts.import_policy:
+            yield family_opts.import_policy
 
 
 def extract_policies(config: BgpConfig) -> Sequence[str]:
