@@ -153,7 +153,7 @@
     "PC.Whitebox.FSCOM.N.N9600": " N96\\d\\d",
     "PC.Whitebox.FSCOM.N.N9600.N9600_64OD": " N9600-64OD",
     "PC.Nebius": "^Nebius",
-    "PC.Nebius.NB-E-BR-DCU-AST2600": "^Nebius NB-E-BR-DCU-AST2600",
+    "PC.Nebius.Octoport": " NB-D-M-CSM-R",
     "PC.Avocent": " [Aa]vocent",
     "PC.Avocent.ACS8000": " (ACS|acs)8000",
 
