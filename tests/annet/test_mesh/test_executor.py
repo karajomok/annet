@@ -60,7 +60,6 @@ def on_direct(local: DirectPeer, neighbor: DirectPeer, session: MeshSession):
     neighbor.addr = "192.168.1.1"
     local.mtu = 1501
     local.family_options.ipv4_unicast.af_loops = 44
-    local.cluster_id = "10.2.3.4"
     neighbor.mtu = 1502
     session.asnum = 12345
     session.bfd_timers = BFDTimers(multiplier=1)
@@ -72,7 +71,6 @@ def on_direct_alt(local: DirectPeer, neighbor: DirectPeer, session: MeshSession)
     neighbor.addr = "192.168.1.2"
     local.mtu = 1501
     local.family_options.ipv4_unicast.af_loops = 44
-    local.cluster_id = "10.2.3.4"
     neighbor.mtu = 1502
     session.asnum = 12345
     session.families = {"ipv4_labeled_unicast"}
@@ -84,7 +82,6 @@ def on_indirect(local: IndirectPeer, neighbor: IndirectPeer, session: MeshSessio
     local.import_limit = 42
     local.import_limit_action = "stub"
     local.family_options.ipv4_unicast.af_loops = 44
-    local.cluster_id = "10.2.3.4"
     neighbor.addr = "192.168.2.10"
     local.mtu = 1505
     neighbor.mtu = 1506
@@ -97,7 +94,6 @@ def on_indirect_alt(local: IndirectPeer, neighbor: IndirectPeer, session: MeshSe
     neighbor.addr = "192.168.2.11"
     local.mtu = 1506
     local.family_options.ipv4_unicast.af_loops = 44
-    local.cluster_id = "10.2.3.4"
     neighbor.mtu = 1507
     session.asnum = 12340
     session.families = {"ipv6_unicast"}
@@ -264,6 +260,14 @@ def test_storage(registry, storage, device1):
         assert peer.interface == "Vlan1"
         assert peer.options.listen_network == ["10.0.0.0/8"]
         assert peer.options.cluster_id == "10.2.3.4"
+
+
+def test_peer_group_family_options(registry, storage, device1):
+    r = MeshExecutor(registry, storage)
+    res = r.execute_for(device1)
+
+    peer_direct, peer_direct_alt, peer_indirect, peer_indirect_alt, *virtual = res.peers
+    assert peer_direct.family_options.ipv4_unicast.af_loops == 44
 
 
 def test_peer_group_family_options(registry, storage, device1):

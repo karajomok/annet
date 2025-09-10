@@ -222,6 +222,23 @@ class PeerFamilyOptions:
 
 
 @dataclass
+class PeerFamilyOption:
+    af_loops: Optional[int] = None
+    import_limit: Optional[int] = None
+
+
+@dataclass
+class PeerFamilyOptions:
+    ipv4_unicast: PeerFamilyOption = field(default_factory=PeerFamilyOption)
+    ipv6_unicast: PeerFamilyOption = field(default_factory=PeerFamilyOption)
+    ipv4_vpn_unicast: PeerFamilyOption = field(default_factory=PeerFamilyOption)
+    ipv6_vpn_unicast: PeerFamilyOption = field(default_factory=PeerFamilyOption)
+    ipv4_labeled_unicast: PeerFamilyOption = field(default_factory=PeerFamilyOption)
+    ipv6_labeled_unicast: PeerFamilyOption = field(default_factory=PeerFamilyOption)
+    l2vpn_evpn: PeerFamilyOption = field(default_factory=PeerFamilyOption)
+
+
+@dataclass
 class Peer:
     addr: str
     interface: Optional[str]

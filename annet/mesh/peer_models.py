@@ -81,7 +81,6 @@ class _OptionsDTO(_SharedOptionsDTO):
     not_active: bool
     mtu: int
     family_options: PeerFamilyOptions
-    cluster_id: Optional[str]
 
 
 class DirectPeerDTO(MeshSession, _OptionsDTO):
