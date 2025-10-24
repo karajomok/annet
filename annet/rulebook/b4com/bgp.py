@@ -1,4 +1,6 @@
 from annet.annlib.types import Op
+from annet.rulebook import common
+
 
 
 def undo_peer_group(rule, key, diff, **_):
@@ -35,3 +37,25 @@ def undo_peer_group(rule, key, diff, **_):
                     yield (False, "no " + row, None)
             else:
                 yield (False, "no " + row, None)
+
+
+def undo_peer(rule, key, diff, **kwargs):
+    """
+    If we remove a neighbor, we just remove configuration with remote-as command.
+    But if we remove specific neighbor's options, without neighbor deletion
+    we need check if neighbor * remote-as not exists in Op.REMOVED rule_pre items.
+    """
+    if diff[Op.REMOVED]:
+        if "remote-as" in diff[Op.REMOVED][0]["row"]:
+            yield (False, "no " + diff[Op.REMOVED][0]["row"], None)
+        else:
+            is_neighbor_removing = False
+            for item in kwargs["rule_pre"]["items"].values():
+                if item[Op.REMOVED]:
+                    if f"neighbor {key[0].split()[0]} remote-as" in item[Op.REMOVED][0]["row"]:
+                        is_neighbor_removing = True
+                        break
+            if not is_neighbor_removing:
+                yield from common.default(rule, key, diff, **kwargs)
+    else:
+        yield from common.default(rule, key, diff, **kwargs)
