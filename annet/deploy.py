@@ -193,7 +193,10 @@ def fill_cmd_params(rules: OrderedDict, cmd: Command):
     if rule:
         cmd_params = make_cmd_params(rule)
         cmd.questions = cmd_params.get("questions", None)
-        cmd.timeout = cmd_params["timeout"]
+        if cmd.timeout is None:
+            cmd.timeout = cmd_params["timeout"]
+        if cmd.read_timeout is None:
+            cmd.read_timeout = cmd.timeout
 
 
 def apply_deploy_rulebook(hw: HardwareView, cmd_paths, do_finalize=True, do_commit=True):
