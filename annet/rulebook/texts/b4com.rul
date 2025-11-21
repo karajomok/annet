@@ -38,9 +38,10 @@ ip community-list ~
 router bgp *
     bgp ~
     no neighbor * send-community extended
-    neighbor * peer-group %logic=b4com.bgp.undo_peer_group
-    neighbor ~ %logic=b4com.bgp.undo_peer
+    neighbor * peer-group                       %logic=b4com.bgp.undo_peer_group
+    neighbor ~                                  %logic=b4com.bgp.undo_peer
     address-family ~
         max-paths ebgp *
-        neighbor *
+        neighbor * peer-group                   %logic=b4com.bgp.undo_peer_group
+        neighbor ~                              %logic=b4com.bgp.undo_peer
         no neighbor * send-community extended
